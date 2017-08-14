@@ -1,0 +1,37 @@
+﻿@model MvcMovie.Models.MovieGenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@foreach (var item in Model.movies)
+{
+    if (item.AddedWishlist == true)
+    {
+        @Html.DisplayFor(modelItem => item.AddedWishlist)
+    }
+}
+
+
+            @*<div>
+                    <h4>WishList</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        @foreach (var item in Model.favItems)
+                        {
+                        <dt>
+                            @Html.DisplayNameFor(modelItem => item.ID)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(modelItem => item.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </dd>
+                        }
+                    </dl>
+                </div>
+            *@

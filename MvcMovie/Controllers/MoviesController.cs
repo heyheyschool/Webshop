@@ -12,10 +12,12 @@ namespace MvcMovie.Controllers
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
+        private WishListViewModel wishList;
 
         public MoviesController(MvcMovieContext context)
         {
-            _context = context;    
+            _context = context;
+            wishList = new WishListViewModel();
         }
 
         // Requires using Microsoft.AspNetCore.Mvc.Rendering;
@@ -176,5 +178,53 @@ namespace MvcMovie.Controllers
         {
             return _context.Movie.Any(e => e.ID == id);
         }
+
+        public ActionResult WishlistConfirm(int id)
+        {
+            var movie = _context.Movie.SingleOrDefault(m => m.ID == id);
+            movie.AddedWishlist = true;
+            wishList.favItems.Add(movie);
+
+            return View(wishList);
+            /*"~/Views/WishLists/Wishlist.cshtml"*/
+        }
+
+        public ActionResult Wishlist()
+        {
+            return View("~/Views/Movies/Wishlist.cshtml");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddWishlist(int id, [Bind("AddedWishlist")] Movie movie)
+        {
+            if (id != movie.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(movie);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MovieExists(movie.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return View(movie);
+        }
+
     }
-}
+    }
