@@ -20,8 +20,8 @@ namespace MvcMovie.Controllers
             wishList = new WishListViewModel();
         }
 
-        // Requires using Microsoft.AspNetCore.Mvc.Rendering;
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+// Requires using Microsoft.AspNetCore.Mvc.Rendering;
+public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
@@ -83,7 +83,7 @@ namespace MvcMovie.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price,Rating,AddedWishlist")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price,Rating,AddedWishlist,Image")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -113,9 +113,10 @@ namespace MvcMovie.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        /*, ActionName("Delete")*/
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price,Rating,AddedWishlist")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price,Rating,AddedWishlist,Image")] Movie movie)
         {
             if (id != movie.ID)
             {
@@ -187,14 +188,29 @@ namespace MvcMovie.Controllers
 
             return View(wishList);
             /*"~/Views/WishLists/Wishlist.cshtml"*/
-        }
+    }
 
-        public ActionResult Wishlist()
+    public async Task<IActionResult> Wishlist(bool type)
         {
-            return View("~/Views/Movies/Wishlist.cshtml");
+            // Use LINQ to get list of genres.
+            IQueryable<bool> wishListQuery = from a in _context.Movie
+                                             orderby a.AddedWishlist
+                                             select a.AddedWishlist;
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            movies = movies.Where(x => x.AddedWishlist == type);
+
+
+            WishListViewModel wishListViewModel = new WishListViewModel();
+            wishListViewModel.items = new SelectList(await wishListQuery.Distinct().ToListAsync());
+            wishListViewModel.favItems = await movies.ToListAsync();
+
+            return View(wishListViewModel);
         }
 
-        [HttpPost, ActionName("Delete")]
+        /*[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddWishlist(int id, [Bind("AddedWishlist")] Movie movie)
         {
@@ -225,6 +241,6 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-
+        */
     }
     }

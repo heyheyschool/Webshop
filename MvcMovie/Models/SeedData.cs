@@ -26,7 +26,8 @@ namespace MvcMovie.Models
                          Genre = "Romantic Comedy",
                          Rating = "R",
                          Price = 7.99M,
-                         AddedWishlist = false
+                         Image = "~/images/meangirls.jpeg",
+                         AddedWishlist = true
                      },
 
                      new Movie
@@ -36,7 +37,9 @@ namespace MvcMovie.Models
                          Genre = "Comedy",
                          Rating = "R",
                          Price = 8.99M,
-                         AddedWishlist = false
+                         Image = "~/images/meangirls.jpeg",
+                         AddedWishlist = true
+                         
                      },
 
                      new Movie
@@ -46,18 +49,20 @@ namespace MvcMovie.Models
                          Genre = "Comedy",
                          Rating = "R",
                          Price = 9.99M,
+                         Image = "~/images/wanted.jpg",
                          AddedWishlist = false
                      },
 
-                   new Movie
-                   {
-                       Title = "Rio Bravo",
-                       ReleaseDate = DateTime.Parse("1959-4-15"),
-                       Genre = "Western",
-                       Rating = "R",
-                       Price = 3.99M,
-                       AddedWishlist = false
-                   }
+                     new Movie
+                     {
+                         Title = "Rio Bravo",
+                         ReleaseDate = DateTime.Parse("1959-4-15"),
+                         Genre = "Western",
+                         Rating = "R",
+                         Price = 3.99M,
+                         Image = "~/images/wanted.jpg",
+                         AddedWishlist = false
+                     }
                 );
                 context.SaveChanges();
             }
