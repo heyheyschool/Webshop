@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using System.Diagnostics;
 
 namespace MvcMovie.Controllers
 {
@@ -180,17 +181,17 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
             return _context.Movie.Any(e => e.ID == id);
         }
 
-        public ActionResult WishlistConfirm(int id)
+       /* public ActionResult WishlistConfirm(int id)
         {
             var movie = _context.Movie.SingleOrDefault(m => m.ID == id);
             movie.AddedWishlist = true;
             wishList.favItems.Add(movie);
 
             return View(wishList);
-            /*"~/Views/WishLists/Wishlist.cshtml"*/
-    }
+            "~/Views/WishLists/Wishlist.cshtml"
+    }*/
 
-    public async Task<IActionResult> Wishlist(bool type)
+    public async Task<IActionResult> Wishlist()
         {
             // Use LINQ to get list of genres.
             IQueryable<bool> wishListQuery = from a in _context.Movie
@@ -200,7 +201,7 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
             var movies = from m in _context.Movie
                          select m;
 
-            movies = movies.Where(x => x.AddedWishlist == type);
+            movies = movies.Where(x => x.AddedWishlist == true);
 
 
             WishListViewModel wishListViewModel = new WishListViewModel();
@@ -210,9 +211,25 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
             return View(wishListViewModel);
         }
 
-        /*[HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> AddWishlist(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
+        [HttpPost]
+        /*, ActionName("Delete")*/
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddWishlist(int id, [Bind("AddedWishlist")] Movie movie)
+        public async Task<IActionResult> AddWishlist(int id, [Bind("ID,Title,ReleaseDate,Genre,Price,Rating,AddedWishlist,Image")] Movie movie)
         {
             if (id != movie.ID)
             {
@@ -241,6 +258,6 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
             }
             return View(movie);
         }
-        */
+
     }
     }

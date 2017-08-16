@@ -77,12 +77,8 @@
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                    <a asp-action="AddWishlist" asp-route-id="@item.ID">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label></a>
-</td>
+                    <a asp-action="AddWishlist" asp-route-id="@item.ID">Add Wishlist</a>
+            </td>
             </tr>
         }
 
