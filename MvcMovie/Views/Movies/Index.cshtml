@@ -68,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td> 
                 <td>
-                    @Html.DisplayFor(modelItem => item.AddedWishlist)
+                    @Html.CheckBoxFor(modelItem => item.AddedWishlist)
                 </td>
                 <td>
                     <img src="@Url.Content(@item.Image)" widht="50" height="100" />
