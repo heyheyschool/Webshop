@@ -4,28 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>WishList</h2>
-
-
-        @foreach (var item in Model.favItems)
-        {
-
-                    @Html.DisplayFor(modelItem => item.Title)
-
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
-
-                    @Html.DisplayFor(modelItem => item.Genre)
-
-                    @Html.DisplayFor(modelItem => item.Price)
-    
-                    @Html.DisplayFor(modelItem => item.Rating)
-               
-                    @Html.DisplayFor(modelItem => item.AddedWishlist)
+<div class="container">
+    @foreach (var item in Model.favItems)
+    {
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    @Html.DisplayFor(modelItem => item.Title)<br>
+                    @Html.DisplayNameFor(modelItem => item.ReleaseDate) : @Html.DisplayFor(modelItem => item.ReleaseDate)<br>
+                    @Html.DisplayNameFor(modelItem => item.Genre) : @Html.DisplayFor(modelItem => item.Genre)<br>
+                    @Html.DisplayNameFor(modelItem => item.Rating) : @Html.DisplayFor(modelItem => item.Rating)
+                </div>
+                <div class="panel-body"><img src="@Url.Content(@item.Image)" class="img-responsive" style="width:80%" alt="Image"></div>
+                <div class="panel-footer">@Html.DisplayFor(modelItem => item.Price)</div>
                 
-                    <img src="@Url.Content(@item.Image)" widht="50" height="100" />
-           
-        }
-
+                
+            </div>
+        </div>
+    }
+</div><br>
 
 @*@model MvcMovie.Models.MovieGenreViewModel
 

@@ -26,7 +26,7 @@ namespace MvcMovie.Models
                          Genre = "Romantic Comedy",
                          Rating = "R",
                          Price = 7.99M,
-                         Image = "~/images/meangirls.jpeg",
+                         Image = "~/Content/Images/meangirls.jpeg",
                          AddedWishlist = true
                      },
 
@@ -37,7 +37,7 @@ namespace MvcMovie.Models
                          Genre = "Comedy",
                          Rating = "R",
                          Price = 8.99M,
-                         Image = "~/images/meangirls.jpeg",
+                         Image = "~/Content/Images/meangirls.jpeg",
                          AddedWishlist = true
                          
                      },
@@ -49,7 +49,7 @@ namespace MvcMovie.Models
                          Genre = "Comedy",
                          Rating = "R",
                          Price = 9.99M,
-                         Image = "~/images/wanted.jpg",
+                         Image = "~/Content/Images/wanted.jpg",
                          AddedWishlist = false
                      },
 
@@ -60,7 +60,7 @@ namespace MvcMovie.Models
                          Genre = "Western",
                          Rating = "R",
                          Price = 3.99M,
-                         Image = "~/images/wanted.jpg",
+                         Image = "~/Content/Images/wanted.jpg",
                          AddedWishlist = false
                      }
                 );

@@ -10,39 +10,48 @@
     <div class="form-horizontal">
         <h4>Movie</h4>
         <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
-        <div class="form-group">
-            <label asp-for="Title" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.Title, new { @readonly = true }) 
-        </div>
-        <div class="form-group">
-            <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.ReleaseDate, new { @readonly = true }) 
-        </div>
-        <div class="form-group">
-            <label asp-for="Genre" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.Genre, new { @readonly = true })
-        </div>
-        <div class="form-group">
-            <label asp-for="Price" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.Price, new { @readonly = true })
-        </div>
-        <div class="form-group">
-            <label asp-for="Rating" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.Rating, new { @readonly = true })
-        </div>
-        <div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-                @Html.TextBoxFor(model => model.Image, new { @readonly = true })
-        </div>
-                @Html.CheckBoxFor(model => model.AddedWishlist, new { @readonly = true })
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+                        <div class="form-group">
+                            <label asp-for="Title" class="col-md-2 control-label"></label>
+                        </div>
+                    
+                        @Html.TextBoxFor(model => model.Title, new { @readonly = true })
+      <br />
+                        <div class="form-group">
+                            <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>
+                        </div>
+                        @Html.TextBoxFor(model => model.ReleaseDate, new { @readonly = true })
+      <br />
+                        <div class="form-group">
+                            <label asp-for="Genre" class="col-md-2 control-label"></label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Genre, new { @readonly = true })
+      <br />
+                        <div class="form-group">
+                            <label asp-for="Price" class="col-md-2 control-label"></label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Price, new { @readonly = true })
+      <br />
+                        <div class="form-group">
+                            <label asp-for="Rating" class="col-md-2 control-label"></label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Rating, new { @readonly = true })
+       <br />
+                        <div class="form-group">
+                            <label asp-for="Image" class="col-md-2 control-label"></label>
+                        </div>
+                        @Html.TextBoxFor(model => model.Image, new { @readonly = true })
+                        <br />
+                        @Html.CheckBoxFor(model => model.AddedWishlist, new { @readonly = true })
+        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+        <br />
+                    </div>
+                    </div>
+</div>
 </form>
 
 <div>
